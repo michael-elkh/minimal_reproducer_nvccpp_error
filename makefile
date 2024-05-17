@@ -1,5 +1,5 @@
 FLAGS+=-std=c++20 -O3
-NVFLAGS+=-nostdpar#-stdpar=gpu 
+NVFLAGS+=-stdpar=gpu 
 CC:=nvc++
 .PHONY=run clean
 
