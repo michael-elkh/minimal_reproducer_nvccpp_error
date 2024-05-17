@@ -1,5 +1,5 @@
 FLAGS+=-std=c++20 -O3
-NVFLAGS+=-stdpar=gpu 
+NVFLAGS+=-nostdpar#-stdpar=gpu 
 CC:=nvc++
 .PHONY=run clean
 
@@ -11,9 +11,9 @@ HEADERS:=cartesian_product.hpp
 all: $(NVIDIA) $(GCC)
 
 run: all
-	@echo "WITH NVC++" 
+	@echo "WITH NVC++ USING GPU FOR PARALLEL EXECUTION" 
 	@./$(NVIDIA)
-	@echo "WITH G++" 
+	@echo "WITH G++ USING TBB FOR PARALLEL EXECUTION" 
 	@./$(GCC)
 
 $(NVIDIA): main.cpp $(HEADERS)

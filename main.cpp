@@ -81,7 +81,7 @@ constexpr bool approxEqual(const vec_t& mat_a, const vec_t& mat_b) {
     Sequential reference
 */
 
-vec_t refSeq(const vec_t& src) {
+vec_t sequentialReference(const vec_t& src) {
     vec_t dst;
     dst.resize(src.size());
 
@@ -113,7 +113,7 @@ vec_t refSeq(const vec_t& src) {
     STL Code that provokes the error.
 */
 
-vec_t mdspanAndCp(const vec_t& src) {
+vec_t stlVersionWithCarthesianProduct(const vec_t& src) {
     constexpr auto kPolicy = std::execution::par_unseq;
 
     vec_t dst;
@@ -122,7 +122,7 @@ vec_t mdspanAndCp(const vec_t& src) {
     auto md_src = std::mdspan(src.data(), kDims[2], kDims[1], kDims[0]);
     auto md_dst = std::mdspan(dst.data(), kDims[2], kDims[1], kDims[0]);
 
-    // We consider the halo
+    // We consider the constant borders
     auto xs = std::views::iota(kConstBorders[0][0], kDims[0] - kConstBorders[0][1]);
     auto ys = std::views::iota(kConstBorders[1][0], kDims[1] - kConstBorders[1][1]);
     auto zs = std::views::iota(kConstBorders[2][0], kDims[2] - kConstBorders[2][1]);
@@ -157,8 +157,8 @@ int main(int argc, char** argv) {
 
     std::iota(src.begin(), src.end(), 100);
 
-    auto ref = refSeq(src);
-    auto res = mdspanAndCp(src);
+    auto ref = sequentialReference(src);
+    auto res = stlVersionWithCarthesianProduct(src);
 
     printVs(ref, res);
 
