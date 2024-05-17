@@ -38,6 +38,7 @@ Copyright (c) 2024, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
 
 ## Output Example
 
+```console
 WITH NVC++ USING GPU FOR PARALLEL EXECUTION
 ------------ Reference ------------      /         ------------ Result ------------
 
@@ -91,3 +92,4 @@ WITH G++ USING TBB FOR PARALLEL EXECUTION
   0   0   0   0   0   0          /         0   0   0   0   0   0 
   0   0   0   0   0   0          /         0   0   0   0   0   0 
   0   0   0   0   0   0          /         0   0   0   0   0   0
+```
