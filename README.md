@@ -4,6 +4,10 @@ I may have found an error in the nvc++ compiler. It seems that when you use the
 carthesian product and mdspan to modify data with par_unseq policy and `-stdpar=gpu|multicore`, you end up with data corruption.
 The problem disappear when you use `-nostdpar` or if you use the seq policy.
 
+## Update 10.07
+
+I updated the reproducer with a patch from Nvidia, and the issue is resolved.
+
 ## Description
 
 In [main.cpp](main.cpp), we have a sequential reference function and one using the STL and the carthesian product. The other functions are only here for utils (printing and stuff).
